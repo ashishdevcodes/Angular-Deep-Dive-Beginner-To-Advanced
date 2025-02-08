@@ -1,0 +1,44 @@
+
+# Issue: `command not found: compdef` Warning in Terminal
+
+## Problem
+The warning `command not found: compdef` appeared every time a new terminal was opened. This occurred because the Angular CLI autocompletion script was added directly to `.zprofile` without ensuring Zsh's autocompletion system (`compinit`) was properly initialized.
+
+## Steps Taken to Resolve
+
+1. **Verified Zsh Completion System**:
+   - Ensured that the Zsh autocompletion system was enabled by adding the following line to the `.zshrc` file:
+     ```bash
+     autoload -U compinit && compinit
+     ```
+
+2. **Updated `.zshrc` File**:
+   - Ensured that the Angular CLI autocompletion script was sourced only in `.zshrc` with the following:
+     ```bash
+     if command -v ng &> /dev/null; then
+       source <(ng completion script)
+     fi
+     ```
+
+3. **Cleaned Up `.zprofile`**:
+   - Removed all lines related to Angular CLI autocompletion from `.zprofile` to prevent redundant and conflicting sourcing:
+     ```bash
+     # Removed lines:
+     #compdef ng
+     ###--begin-ng-completions--###
+     ...
+     ###--end-ng-completions--###
+     ```
+
+4. **Reloaded `.zshrc`**:
+   - Reloaded the `.zshrc` file to apply changes:
+     ```bash
+     source ~/.zshrc
+     ```
+
+5. **Tested Changes**:
+   - Opened a new terminal and verified that the warning no longer appeared.
+   - Confirmed Angular CLI autocompletion worked by typing `ng` and pressing `TAB`.
+
+## Result
+The issue was resolved successfully. The warning no longer appears, and Angular CLI autocompletion works as expected.

@@ -1,0 +1,52 @@
+<div class="top-menu">
+
+    <img class="logo" alt="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+
+</div>
+
+<!-- {{ courses | json }} -->
+<!-- Create a div with ngFor directive to loop through course property with use of keyvalue pipe -->
+<!-- <div *ngFor="let pair of course | keyvalue">
+    {{ pair.key }}: {{ pair.value }}
+</div> -->
+<!-- <div class="demo">
+    <div>Start Date {{startDate | date: 'MMM/dd/yyyy'}}</div>
+    <div>{{title | uppercase}}</div>
+    <div>{{price | number: '3.3-5'}}</div>
+    <div>{{price | currency: 'EUR'}}</div>
+    <div>{{rate | percent}}</div>
+</div> -->
+
+<div class="courses">
+
+    <!-- New For Loop -->
+    <!-- @for (course of courses; track trackByCourses; let count=$count;
+    let first=$first;let last=$last; let even=$even; let odd=$odd) {
+        <course-card (courseSelected)="onCourseSelected($event)" 
+        [index]="$index" 
+        [class.is-first]="first"
+        [class.is-last]="last"
+        [class.is-even]="even"
+        [class.is-odd]="odd"
+        [course]="course"/>
+    }
+    @empty {
+        <div class="no-courses">
+            No courses available
+        </div>
+    } -->
+
+    <!-- Using ngFor -->
+    <!-- <course-card *ngFor="let course of courses; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd"
+        [class.is-first]="isFirst"
+        [class.is-last]="isLast"
+        [class.is-even]="isEven"
+        [class.is-odd]="isOdd" 
+        [cardIndex]="i + 1" 
+        [course]="course"
+        (courseSelected)="onCourseSelected($event)"/> -->
+    <course-card *ngFor="let course of courses | slice:0:2; index as i"
+        [cardIndex]="i + 1" 
+        [course]="course"
+        (courseSelected)="onCourseSelected($event)"/>
+</div>

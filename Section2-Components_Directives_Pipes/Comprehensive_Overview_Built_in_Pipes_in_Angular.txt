@@ -1,0 +1,63 @@
+
+# Comprehensive Overview of Built-in Pipes in Angular
+
+## Overview
+Angular's built-in pipes provide utilities for common transformations in templates, enhancing readability and maintainability without additional coding effort.
+
+## Common Built-in Pipes and Their Use Cases
+
+### 1. DatePipe
+- **Usage:** Formats dates according to locale rules.
+- **Example:** `<p>{{ today | date:'fullDate' }}</p>`
+
+### 2. UpperCasePipe and LowerCasePipe
+- **Usage:** Transforms text to all uppercase or lowercase.
+- **Example:** `<p>{{ 'hello' | uppercase }}</p>`
+
+### 3. CurrencyPipe
+- **Usage:** Formats numbers as currency.
+- **Example:** `<p>{{ 150 | currency:'USD':'symbol' }}</p>`
+
+### 4. DecimalPipe
+- **Usage:** Formats a number as a decimal.
+- **Example:** `<p>{{ 1.2345 | number:'1.2-2' }}</p>`
+
+### 5. PercentPipe
+- **Usage:** Formats a number as a percentage.
+- **Example:** `<p>{{ 0.1234 | percent }}</p>`
+
+### 6. SlicePipe
+- **Usage:** Creates a new array or string containing a subset of elements.
+- **Example:** `<p>{{ 'Angular' | slice:3:6 }}</p>`
+
+### 7. JsonPipe
+- **Usage:** Converts an object or array into a JSON string.
+- **Example:** `<p>{{ {name: 'Angular'} | json }}</p>`
+
+### 8. KeyValuePipe
+- **Usage:** Transforms an object or Map into an array of key-value pairs for easier iteration.
+- **Example:** `<div *ngFor="let item of object | keyValue">{{ item.key }}:{{ item.value }}</div>`
+
+### 9. AsyncPipe
+- **Usage:** Unwraps a Promise or Observable to the latest value it emitted.
+- **Example:** `<p>{{ dataObservable | async }}</p>`
+
+## Pros and Cons of Using Pipes
+
+### Pros
+- **Simplicity and Efficiency:** Simplify templates by handling formatting and transformations inline.
+- **Consistency:** Provide consistent formatting across the application without duplicating logic.
+
+### Cons
+- **Performance Overhead:** Can contribute to performance overhead, especially if used extensively in large datasets or complex UIs.
+- **Potential Overuse:** Excessive use can lead to complicated templates and reduced maintainability.
+
+## Best Practices
+
+1. **Limit Use in Complex Calculations:** Use component methods for complex calculations to avoid performance bottlenecks.
+2. **Memoize Pipe Outputs:** For custom pipes performing heavy computations, implement memoization to cache results.
+3. **Use Pipes for Presentation Only:** Keep business logic out of pipes and focus on presentation-specific transformations.
+
+## Conclusion
+
+Angular's built-in pipes are essential tools for developers, streamlining data presentation and improving user interface responsiveness. Proper use adheres to best practices for optimal application performance.
