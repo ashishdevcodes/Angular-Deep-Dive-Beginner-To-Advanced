@@ -1,0 +1,45 @@
+### Steps Followed for Angular CLI Installation and Environment Path Setup
+
+1. **Verified Node.js and npm Installation**:
+   - Checked that Node.js (v18.x.x) and npm were installed using:
+     ```bash
+     node -v
+     npm -v
+     ```
+
+2. **Installed Angular CLI Globally**:
+   - Used the command to install Angular CLI globally:
+     ```bash
+     npm install -g @angular/cli
+     ```
+
+3. **Verified Angular CLI Installation**:
+   - Confirmed the Angular CLI was installed using:
+     ```bash
+     ng version
+     ```
+     This displayed the Angular CLI version and other details.
+
+4. **Configured Global npm Modules Path in `$PATH`**:
+   - Determined the global npm modules path using:
+     ```bash
+     npm config get prefix
+     ```
+   - Added the path to the shell configuration file (`~/.zshrc` in this case):
+     ```bash
+     export PATH=$PATH:$(npm config get prefix)/bin
+     ```
+   - Reloaded the shell configuration file:
+     ```bash
+     source ~/.zshrc
+     ```
+
+5. **Tested `ng` Command**:
+   - Verified Angular CLI commands worked by running:
+     ```bash
+     ng help
+     ```
+     This displayed a list of available Angular CLI commands.
+
+### Notes:
+- Running `ng` without arguments did not display help, but this behavior is acceptable as `ng help` works fine.

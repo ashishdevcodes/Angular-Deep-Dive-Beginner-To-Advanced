@@ -1,0 +1,22 @@
+1. Checked for `nvm` installation
+   Verified `nvm` was already installed in `/Users/ashishdeshpande/.nvm`.
+
+2. Created `.zshrc` file
+   Used the command `touch ~/.zshrc` to create a missing Zsh configuration file.
+
+3. Edited `.zshrc` file
+   Added the following lines to configure `nvm`:
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+4. Reloaded `.zshrc`
+   Ran `source ~/.zshrc` to reload the configuration file and make `nvm` accessible.
+
+5. Verified `nvm` installation
+   Used the command `nvm --version` to ensure `nvm` was working.
+
+6. Installed Node.js version 18
+   Used the command `nvm install 18` to install Node.js version 18.
+
+7. Set Node.js 18 as default (optional)
+   Optionally ran `nvm alias default 18` to set version 18 as the default Node.js version.
