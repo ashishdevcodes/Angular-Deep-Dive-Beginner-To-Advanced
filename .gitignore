@@ -4,3 +4,6 @@
 **/.angular
 **/.vscode
 .DS_Store
+
+#Include all new folders
+!*/
