@@ -1,0 +1,9 @@
+# Ignore node_modules across all projects
+**/node_modules
+**/dist
+**/.angular
+**/.vscode
+.DS_Store
+
+#Include all new folders
+!*/
