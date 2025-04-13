@@ -1,0 +1,17 @@
+<div class="top-menu">
+    <img class="logo" alt="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+</div>
+
+<div class="courses" *ngIf="courses[0] as course">
+    <course-card  [course]="course" (courseSelected)="onCourseSelected($event)">
+        <course-image [src]="course.iconUrl"></course-image>
+        <course-image [src]="courses[1].iconUrl"></course-image>
+        <course-image [src]="courses[2].iconUrl"></course-image>
+        <div class="course-description">
+            <p>{{course.longDescription}}</p>
+        </div>
+    </course-card>
+    <!-- <course-card (courseSelected)="onCourseSelected($event)" [course]="courses[1]">
+        <h5>total lessons: 10</h5>
+    </course-card> -->
+</div>
