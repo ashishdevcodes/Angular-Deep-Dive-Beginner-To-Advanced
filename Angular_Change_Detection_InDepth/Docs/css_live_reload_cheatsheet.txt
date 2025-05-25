@@ -1,0 +1,64 @@
+Angular CSS Live‑Reload Cheat‑Sheet
+===================================
+
+1. Register Global Styles
+-------------------------
+• Preferred path: src/styles.css (already in angular.json by CLI).
+• Custom file: add its path to
+  angular.json → projects → <app> → architect → build → options → styles
+
+  Example:
+    "styles": [
+      "src/global-theme.css",
+      "src/assets/fonts.css"
+    ]
+
+2. Enable Live Reload
+---------------------
+angular.json → projects → <app> → architect → serve → options
+  "liveReload": true          # add if missing
+  "watch": true               # (default)
+
+CLI flags that disable it:
+  ng serve --live-reload=false
+  ng serve --watch=false
+
+3. When to Restart ng serve
+---------------------------
+✔ After editing angular.json (build or serve options)
+✘ NOT required after simply editing CSS/TS/HTML once the file is in the graph.
+
+4. Watching Files Inside /assets
+--------------------------------
+• Files in src/assets are treated as static assets (copied, not watched).
+• Work‑around A: move global CSS into src/.
+• Work‑around B: keep in assets but ensure it’s listed in the “styles” array.
+  Restart ng serve once.
+
+Advanced tip:
+  Create one watched file (e.g., src/global-theme.css) that @imports
+  any number of CSS files from assets/. Only this single file goes into “styles”.
+
+5. Quick Hot‑Reload Test
+------------------------
+1. Run: ng serve
+2. Edit global CSS:  body { background: hotpink !important; }
+3. Terminal should show a rebuild message:
+     ✔ Browser application bundle generation complete.
+4. Browser auto-refreshes and shows hot‑pink background.
+
+6. Common Symptoms & Fixes
+--------------------------
+Symptom: CSS change ignored.
+Cause 1 → liveReload=false           → set to true.
+Cause 2 → file not in “styles”       → add to array; restart once.
+Cause 3 → using --watch=false flag   → drop the flag.
+Cause 4 → edit angular.json          → restart ng serve.
+
+7. Component Scoped Styles
+--------------------------
+• @Component must use styleUrls (plural) or styles.
+• Path must be correct relative to the component .ts file.
+• No further configuration needed—Angular watches them automatically.
+
+Enjoy instant feedback while styling your Angular app!
