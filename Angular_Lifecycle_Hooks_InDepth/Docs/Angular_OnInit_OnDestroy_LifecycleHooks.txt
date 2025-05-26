@@ -1,0 +1,70 @@
+
+Angular Lifecycle Hooks: OnInit and OnDestroy
+=============================================
+
+1. OnInit - Component Initialization
+-----------------------------------
+- Purpose: Executes logic after Angular has initialized all data-bound properties.
+- Lifecycle: Invoked once after the first ngOnChanges().
+- Common Use Cases:
+  - Data fetching from services
+  - Initializing component properties
+  - Subscribing to Observables
+- Syntax:
+    ngOnInit(): void {
+        // Initialization logic here
+    }
+
+2. OnDestroy - Component Cleanup
+--------------------------------
+- Purpose: Executes just before Angular destroys the component.
+- Lifecycle: Invoked once just before the component is removed from the DOM.
+- Common Use Cases:
+  - Unsubscribing from Observables
+  - Clearing timers, intervals
+  - Removing event listeners
+- Syntax:
+    ngOnDestroy(): void {
+        // Cleanup logic here
+    }
+
+Best Practices
+--------------
+| Hook       | Do This                                        | Avoid This                                     |
+|------------|------------------------------------------------|------------------------------------------------|
+| OnInit     | Initialize data, subscribe to data sources     | DOM manipulations (wait for AfterViewInit)     |
+| OnDestroy  | Unsubscribe, clear intervals/timers            | Long-running async logic                       |
+
+Visual Lifecycle Flow
+---------------------
+Component Instantiated
+        |
+   Constructor()
+        |
+   OnChanges()        <-- only if @Input() changes
+        |
+     OnInit()         <-- safe to use @Input() values here
+        |
+ Rendering Phase
+        |
+     OnDestroy()      <-- cleanup before removal
+
+Example
+-------
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+@Component({ selector: 'app-example', templateUrl: './example.component.html' })
+export class ExampleComponent implements OnInit, OnDestroy {
+    private dataSubscription!: Subscription;
+
+    ngOnInit(): void {
+        this.dataSubscription = service.getData().subscribe(data => console.log(data));
+    }
+
+    ngOnDestroy(): void {
+        if (this.dataSubscription) {
+            this.dataSubscription.unsubscribe();
+        }
+    }
+}
