@@ -1,0 +1,20 @@
+
+Angular CLI: ng generate pipe – Flags & Options Summary
+
+| Flag / Option         | Alias | Description                                                                 | Example                                       |
+|------------------------|-------|-----------------------------------------------------------------------------|-----------------------------------------------|
+| --skip-tests           |       | Skips creation of the test spec file (`.spec.ts`)                          | ng g p shorten --skip-tests                   |
+| --flat                 |       | Create pipe file without a subfolder                                       | ng g p shorten --flat                         |
+| --standalone           |       | Generates pipe as a standalone pipe (Angular 14+)                          | ng g p shorten --standalone                   |
+| --project=<project>   |       | Specifies the project in a monorepo to create the pipe in                  | ng g p shorten --project=myApp                |
+| --path=<path>         |       | Specifies the path where the pipe will be created                          | ng g p shorten --path=src/app/shared/pipes    |
+| --module=<module>     |       | Declares the pipe in the given NgModule                                    | ng g p shorten --module=app                   |
+| --export               |       | Also adds the pipe to the `exports` array of the NgModule                  | ng g p shorten --module=app --export          |
+| --dry-run              |       | Run the command without writing files (preview changes)                    | ng g p shorten --dry-run                      |
+| --skip-import          |       | Skip importing the pipe into any NgModule                                  | ng g p shorten --skip-import                  |
+
+Common Examples:
+
+1. ng g p shorten --skip-tests --module=app
+2. ng g p shorten --standalone
+3. ng g p shorten --flat --skip-tests
